@@ -20,5 +20,4 @@ print(json_response[0]["author"])
 
 
 print(response.headers)
-print(response.links)
 assert response.status_code == 200

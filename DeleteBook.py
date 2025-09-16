@@ -1,11 +1,12 @@
 import requests
+from utilities.configurations import getconfig
+from utilities.resources import *
 
-import AddBook
+config = getconfig()
+url = config['API']['endpoint'] + ApiResources.deleteBook
 
-response = requests.delete("http://216.10.245.166/Library/DeleteBook.php",
-                           json={
-
-                                    "ID" : AddBook.book_id
+response = requests.delete(url, json={
+                                    "ID" : 'abcd926242'
                                 })
 
 print(response.text)

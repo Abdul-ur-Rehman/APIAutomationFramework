@@ -1,9 +1,13 @@
 import json
-
 import requests
+from utilities.configurations import getconfig
+from utilities.resources import *
 
-response = requests.get("http://216.10.245.166/Library/GetBook.php",
-                       {"ID": "abcd926242"})
+config = getconfig()
+url = config['API']['endpoint'] + ApiResources.getBook_ByID
+
+response = requests.get(url,{"ID": "abcd926242"})
+
 print(response.text)
 print(type(response))
 new_list = json.loads(response.text)

@@ -1,12 +1,12 @@
 import requests
 import payLoad
 from utilities.configurations import getconfig
+from utilities.resources import *
 
 config = getconfig()
+url = config['API']['endpoint'] + ApiResources.addBook
 
-
-response = requests.post(config['API']['endpoint'] + "/Library/Addbook.php",
-                         json= payLoad.addBookPayload("abcd"))
+response = requests.post(url, json= payLoad.addBookPayload("abcd"))
 
 print(response.text)
 

@@ -55,4 +55,4 @@ json_response = response.json()
 
 assert response.status_code == 200
 
-assert "successfully" in json_response["msg"]
+assert "successfully deleted" in json_response["msg"]

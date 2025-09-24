@@ -6,7 +6,7 @@ config = getconfig()
 url = config['API']['endpoint'] + ApiResources.deleteBook
 
 response = requests.delete(url, json={
-                                    "ID" : 'abcd926242'
+                                    "ID" : 'bnid3475'
                                 })
 
 print(response.text)

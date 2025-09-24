@@ -1,7 +1,8 @@
 import requests
-from payLoad import *
+import payLoad
 from utilities.configurations import getconfig
 from utilities.resources import *
+from payLoad import *
 
 config = getconfig()
 url = config['API']['endpoint'] + ApiResources.addBook

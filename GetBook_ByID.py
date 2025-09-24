@@ -6,7 +6,7 @@ from utilities.resources import *
 config = getconfig()
 url = config['API']['endpoint'] + ApiResources.getBook_ByID
 
-response = requests.get(url,{"ID": "abcd926242"})
+response = requests.get(url,{"ID": "bnid3475"})
 
 print(response.text)
 print(type(response))

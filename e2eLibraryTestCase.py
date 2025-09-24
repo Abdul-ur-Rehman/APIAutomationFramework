@@ -1,5 +1,5 @@
 import requests
-import payLoad
+from payLoad import *
 from utilities.configurations import getconfig
 from utilities.resources import *
 import json
@@ -9,7 +9,8 @@ config = getconfig()
 url = config['API']['endpoint'] + ApiResources.addBook
 
 #ADD BOOK
-response = requests.post(url, json= payLoad.addBookPayload("abcd"))
+query = 'SELECT * FROM books;'
+response = requests.post(url, json= buildPayloadFromDB(query))
 
 print(response.text)
 

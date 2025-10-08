@@ -1,8 +1,8 @@
 import configparser
-
 import mysql.connector
-
 from mysql.connector import Error
+
+
 
 def getconfig():
     config = configparser.ConfigParser()

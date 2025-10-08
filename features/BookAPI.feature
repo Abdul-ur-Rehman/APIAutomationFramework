@@ -2,18 +2,22 @@
 
   Feature: Verify if books are adding and deleting using Library API
 
+    @library
     @smoke
     Scenario: Verify AddBook API functionality
       Given the book details which needs to be added to library
       When we execute the AddBook Post API method
       Then book is successfully added
+      And status code of response should be 200
 
+    @library
     @smoke
     Scenario: Verify AddBook API functionality with hard coded data
       Given the hard coded book details which needs to be added to library
       When we execute the AddBook Post API method
       Then book is successfully added
 
+    @library
     @regression
     Scenario Outline: Verify AddBook API functionality with parameteratization
       Given the book details with <isbn> and <aisle>

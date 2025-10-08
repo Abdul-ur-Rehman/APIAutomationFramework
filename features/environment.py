@@ -4,14 +4,17 @@ from utilities.resources import *
 
 
 def after_scenario(context, scenario):
-    config = getconfig()
-    url = config['API']['endpoint'] + ApiResources.deleteBook
 
-    response = requests.delete(url, json={"ID": context.book_id})
+    if 'library' in scenario.tags:
 
-    print(response.text)
-    json_response = response.json()
+        config = getconfig()
+        url = config['API']['endpoint'] + ApiResources.deleteBook
 
-    assert response.status_code == 200
+        response = requests.delete(url, json={"ID": context.book_id})
 
-    assert "successfully" in json_response["msg"]
+        print(response.text)
+        json_response = response.json()
+
+        assert response.status_code == 200
+
+        assert "successfully" in json_response["msg"]

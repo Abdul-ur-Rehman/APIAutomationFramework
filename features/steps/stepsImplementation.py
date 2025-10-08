@@ -3,6 +3,8 @@ from behave import *
 from utilities.resources import *
 from payLoad import *
 
+
+
 @given('the book details which needs to be added to library')
 def step_impl(context):
     config = getconfig()
@@ -35,4 +37,26 @@ def step_impl(context):
 def step_impl(context, isbn, aisle):
     config = getconfig()
     context.url = config['API']['endpoint'] + ApiResources.addBook
-    context.payload = addBookPayload(isbn, aisle);
+    context.payload = addBookPayload(isbn, aisle)
+
+
+@given('I have github auth credentials')
+def step_impl(context):
+
+    config = getconfig()
+    context.session = requests.session()
+    context.session.auth = auth = ('abdul-ur-rehman', getPassword())
+
+    context.url = config['GitHub']['url']
+
+@when('I hit getRepo API of github')
+def step_impl(context):
+    context.response = context.session.get(context.url)
+
+@then('status code of response should be {statusCode:d}')
+def step_impl(context, statusCode):
+    print(context.response.text)
+    assert context.response.status_code == statusCode
+
+
+

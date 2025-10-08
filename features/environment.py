@@ -9,7 +9,7 @@ def after_scenario(context, scenario):
 
     response = requests.delete(url, json={"ID": context.book_id})
 
-    print(response.text)
+    #print(response.text)
     json_response = response.json()
 
     assert response.status_code == 200

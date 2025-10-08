@@ -7,9 +7,8 @@ from payLoad import *
 config = getconfig()
 url = config['API']['endpoint'] + ApiResources.addBook
 
-query = 'SELECT * FROM books;'
 
-response = requests.post(url, json= buildPayloadFromDB(query))
+response = requests.post(url, json= addBookPayload('abc', '926242'))
 
 print(response.text)
 

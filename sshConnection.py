@@ -2,12 +2,8 @@ import paramiko as paramiko
 from utilities.configurations import *
 
 # Start Connection
-config = getconfig()
 
-ssh = paramiko.SSHClient()
-ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-ssh.connect(hostname=config['Server']['host'], port=config['Server']['port'], username=config['Server']['username'], password=config['Server']['password'])
-
+ssh = getSSHConnection()
 
 # Run Commands
 
@@ -16,3 +12,19 @@ print(stdout.readlines())
 
 stdin, stdout, stderr = ssh.exec_command('cat demofile')
 print(stdout.readlines())
+
+#Upload CSV
+source = "batchFiles/loanasa.csv"
+destination = "loanasa.csv"
+
+uploadFile(source, destination)
+
+#Upload .py
+source = "batchFiles/script.py"
+destination = "script.py"
+uploadFile(source, destination)
+
+stdin, stdout, stderr = ssh.exec_command('ls -a')
+print(stdout.readlines())
+
+ssh.close()

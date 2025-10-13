@@ -6,7 +6,6 @@ session.auth = auth=('abdul-ur-rehman', getPassword())
 
 config = getconfig()
 
-#url = "https://api.github.com/user/repos"
 url = config['GitHub']['url']
 github_response = session.get(url)
 

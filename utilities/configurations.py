@@ -1,6 +1,7 @@
 import configparser
 import mysql.connector
 from mysql.connector import Error
+import paramiko as paramiko
 
 
 
@@ -40,3 +41,20 @@ def getQuery(query):
     row = cursor.fetchone()
     conn.close()
     return row
+
+def getSSHConnection():
+    config = getconfig()
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    host = config['Server']['host']
+    port = config['Server']['port']
+    username = config['Server']['username']
+    password = password=config['Server']['password']
+    ssh.connect(hostname= host, port= port, username= username, password= password)
+
+    return ssh
+
+def uploadFile(source, destination):
+    ssh = getSSHConnection()
+    sftp = ssh.open_sftp()
+    sftp.put(source, destination)

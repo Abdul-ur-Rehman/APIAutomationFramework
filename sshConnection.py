@@ -1,4 +1,3 @@
-import paramiko as paramiko
 from utilities.configurations import *
 import csv
 

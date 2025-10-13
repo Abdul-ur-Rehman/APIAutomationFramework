@@ -49,7 +49,7 @@ def getSSHConnection():
     host = config['Server']['host']
     port = config['Server']['port']
     username = config['Server']['username']
-    password = password=config['Server']['password']
+    password = config['Server']['password']
     ssh.connect(hostname= host, port= port, username= username, password= password)
 
     return ssh
@@ -58,3 +58,8 @@ def uploadFile(source, destination):
     ssh = getSSHConnection()
     sftp = ssh.open_sftp()
     sftp.put(source, destination)
+
+def downloadFile(source, destination):
+    ssh = getSSHConnection()
+    sftp = ssh.open_sftp()
+    sftp.get(source,destination)
